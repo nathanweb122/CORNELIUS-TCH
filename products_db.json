@@ -1,0 +1,47 @@
+[
+  {
+    "_id": "prod_online_shop",
+    "title": "Online Shop to Sell Products",
+    "name": "Online Shop to Sell Products",
+    "price": 100,
+    "description": "Complete, high-performance e-commerce storefront with product catalog, cart management, instant checkout flow, and payment gateway integration.",
+    "category": "E-Commerce",
+    "image": "https://images.unsplash.com/photo-1472851294608-062f824d29cc?auto=format&fit=crop&q=80&w=800",
+    "images": [
+      "https://images.unsplash.com/photo-1472851294608-062f824d29cc?auto=format&fit=crop&q=80&w=800"
+    ],
+    "websiteUrl": "demo-shop",
+    "createdAt": "2026-07-27T10:00:00.000Z",
+    "isWebsite": true
+  },
+  {
+    "_id": "prod_school_admin",
+    "title": "School Administration Website",
+    "name": "School Administration Website",
+    "price": 799,
+    "description": "All-in-one school management system for student grading, attendance tracking, faculty directory, tuition fee portal, and parent communication.",
+    "category": "Education",
+    "image": "https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&q=80&w=800",
+    "images": [
+      "https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&q=80&w=800"
+    ],
+    "websiteUrl": "demo-school",
+    "createdAt": "2026-07-27T10:05:00.000Z",
+    "isWebsite": true
+  },
+  {
+    "_id": "prod_ai_editor",
+    "title": "AI Editor Suite",
+    "name": "AI Editor Suite",
+    "price": 300,
+    "description": "Next-gen AI code & content editor with intelligent code completion, prompt refactoring, multi-file workspace, and instant live preview.",
+    "category": "AI Software",
+    "image": "https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&q=80&w=800",
+    "images": [
+      "https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&q=80&w=800"
+    ],
+    "websiteUrl": "demo-ai-editor",
+    "createdAt": "2026-07-27T10:10:00.000Z",
+    "isWebsite": true
+  }
+]

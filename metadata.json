@@ -1,0 +1,12 @@
+{
+  "requestFramePermissions": [
+    "camera",
+    "microphone",
+    "geolocation"
+  ],
+  "name": "Cornelius TEC",
+  "description": "High-integrity digital solutions pairing Kigali, Rwanda and Monrovia, Liberia. Innovation That Defies Gravity.",
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

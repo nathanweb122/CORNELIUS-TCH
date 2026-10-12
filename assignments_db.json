@@ -1,0 +1,26 @@
+[
+  {
+    "_id": "assign_seed_1",
+    "productId": "prod_online_shop",
+    "productTitle": "Online Shop to Sell Products",
+    "websiteUrl": "demo-shop",
+    "clientEmail": "client@test.com",
+    "createdAt": "2026-07-27T10:00:00.000Z"
+  },
+  {
+    "_id": "assign_seed_2",
+    "productId": "prod_school_admin",
+    "productTitle": "School Administration Website",
+    "websiteUrl": "demo-school",
+    "clientEmail": "client@test.com",
+    "createdAt": "2026-07-27T10:05:00.000Z"
+  },
+  {
+    "_id": "assign_seed_3",
+    "productId": "prod_ai_editor",
+    "productTitle": "AI Editor Suite",
+    "websiteUrl": "demo-ai-editor",
+    "clientEmail": "client@test.com",
+    "createdAt": "2026-07-27T10:10:00.000Z"
+  }
+]

@@ -1,0 +1,83 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    
+    // Global Helper functions
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    function isOwner(userId) {
+      return isSignedIn() && request.auth.uid == userId;
+    }
+
+    function isAdmin() {
+      return isSignedIn() && request.auth.token.email == "africahowe@gmail.com";
+    }
+
+    // 1. Profiles Collection
+    match /profiles/{userId} {
+      allow read: if isSignedIn();
+      allow create, update: if isOwner(userId) || isAdmin();
+      allow delete: if isAdmin();
+    }
+
+    // 2. Appointments Collection
+    match /appointments/{appointmentId} {
+      allow get: if isSignedIn() && (isOwner(resource.data.userId) || isAdmin());
+      allow list: if isSignedIn() && (resource.data.userId == request.auth.uid || isAdmin());
+      allow create: if isSignedIn() && isOwner(request.resource.data.userId);
+      allow update: if isSignedIn() && (isOwner(resource.data.userId) || isAdmin());
+      allow delete: if isAdmin();
+    }
+
+    // 3. Reviews Collection
+    match /reviews/{reviewId} {
+      allow read: if true;
+      allow create: if isSignedIn() && isOwner(request.resource.data.userId);
+      allow update: if isSignedIn() && (isOwner(resource.data.userId) || isAdmin());
+      allow delete: if isAdmin() || (isSignedIn() && isOwner(resource.data.userId));
+    }
+
+    // 4. Products (Marketplace Assets) Collection
+    match /products/{productId} {
+      allow read: if true;
+      allow create, update, delete: if isAdmin();
+    }
+
+    // 5. Assignments (Website-to-Client Links) Collection
+    match /assignments/{assignmentId} {
+      allow get: if isSignedIn() && ((request.auth.token.email != null && request.auth.token.email == resource.data.clientEmail) || isAdmin());
+      allow list: if isSignedIn() && ((request.auth.token.email != null && request.auth.token.email == resource.data.clientEmail) || isAdmin());
+      allow create, update, delete: if isAdmin();
+    }
+
+    // 6. Academy Class Registrations (Dynamic per subject)
+    match /registrations_animation/{id} {
+      allow read, create: if true;
+      allow update, delete: if isAdmin();
+    }
+    match /registrations_photo/{id} {
+      allow read, create: if true;
+      allow update, delete: if isAdmin();
+    }
+    match /registrations_vibe-coding/{id} {
+      allow read, create: if true;
+      allow update, delete: if isAdmin();
+    }
+
+    // 7. Academy Chat Messages (Dynamic per subject)
+    match /chat_messages_animation/{id} {
+      allow read, create: if true;
+      allow update, delete: if isAdmin();
+    }
+    match /chat_messages_photo/{id} {
+      allow read, create: if true;
+      allow update, delete: if isAdmin();
+    }
+    match /chat_messages_vibe-coding/{id} {
+      allow read, create: if true;
+      allow update, delete: if isAdmin();
+    }
+  }
+}

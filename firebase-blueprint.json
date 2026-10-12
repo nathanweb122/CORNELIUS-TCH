@@ -1,0 +1,152 @@
+{
+  "entities": {
+    "Profile": {
+      "title": "Profile",
+      "description": "User digital profile and neural credentials mapping",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string", "description": "The unique identifier of the user" },
+        "name": { "type": "string", "maxLength": 100 },
+        "profession": { "type": "string", "maxLength": 150 },
+        "bio": { "type": "string", "maxLength": 1000 },
+        "standsFor": { "type": "string", "maxLength": 1000 },
+        "experience": { "type": "string", "maxLength": 1000 },
+        "imageUrl": { "type": "string", "maxLength": 2048 },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["userId", "name"]
+    },
+    "Appointment": {
+      "title": "Appointment",
+      "description": "A booked session with our master architects",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "name": { "type": "string", "maxLength": 100 },
+        "email": { "type": "string", "maxLength": 128 },
+        "date": { "type": "string" },
+        "time": { "type": "string" },
+        "service": { "type": "string", "maxLength": 100 },
+        "notes": { "type": "string", "maxLength": 1000 },
+        "status": { "type": "string", "enum": ["pending", "confirmed", "completed", "cancelled"] },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["userId", "name", "email", "date", "time", "service", "status"]
+    },
+    "Review": {
+      "title": "Review",
+      "description": "User review feedback node for assets or services",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "userEmail": { "type": "string" },
+        "productId": { "type": "string" },
+        "rating": { "type": "number" },
+        "comment": { "type": "string", "maxLength": 500 },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["userId", "productId", "rating", "comment", "createdAt"]
+    },
+    "Product": {
+      "title": "Product",
+      "description": "A custom web asset node submitted to the Marketplace",
+      "type": "object",
+      "properties": {
+        "title": { "type": "string", "maxLength": 100 },
+        "name": { "type": "string", "maxLength": 100 },
+        "price": { "type": "number" },
+        "description": { "type": "string", "maxLength": 1000 },
+        "category": { "type": "string", "maxLength": 50 },
+        "image": { "type": "string", "maxLength": 2048 },
+        "images": { "type": "array" },
+        "websiteUrl": { "type": "string", "maxLength": 2048 },
+        "isWebsite": { "type": "boolean" },
+        "uploadedBy": { "type": "string", "maxLength": 128 },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["title", "price", "description", "category", "uploadedBy", "createdAt"]
+    },
+    "Assignment": {
+      "title": "Assignment",
+      "description": "Association mapping connecting a product/website asset to a client email",
+      "type": "object",
+      "properties": {
+        "productId": { "type": "string" },
+        "productTitle": { "type": "string", "maxLength": 100 },
+        "websiteUrl": { "type": "string", "maxLength": 2048 },
+        "clientEmail": { "type": "string", "maxLength": 128 },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["productId", "productTitle", "websiteUrl", "clientEmail", "createdAt"]
+    },
+    "AcademyRegistration": {
+      "title": "AcademyRegistration",
+      "description": "Academy course registration entry",
+      "type": "object",
+      "properties": {
+        "name": { "type": "string", "maxLength": 100 },
+        "email": { "type": "string", "maxLength": 128 },
+        "registeredAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["name", "email", "registeredAt"]
+    },
+    "AcademyChatMessage": {
+      "title": "AcademyChatMessage",
+      "description": "Academy course group chat message",
+      "type": "object",
+      "properties": {
+        "name": { "type": "string", "maxLength": 100 },
+        "email": { "type": "string", "maxLength": 128 },
+        "text": { "type": "string", "maxLength": 2000 },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["name", "email", "text", "createdAt"]
+    }
+  },
+  "firestore": {
+    "profiles/{userId}": {
+      "schema": "Profile",
+      "description": "Master user digital profiles"
+    },
+    "appointments/{appointmentId}": {
+      "schema": "Appointment",
+      "description": "Scheduled appointment requests"
+    },
+    "reviews/{reviewId}": {
+      "schema": "Review",
+      "description": "Client reviews and feedback telemetry"
+    },
+    "products/{productId}": {
+      "schema": "Product",
+      "description": "Marketplace asset nodes"
+    },
+    "assignments/{assignmentId}": {
+      "schema": "Assignment",
+      "description": "Website-to-client linkings"
+    },
+    "registrations_animation/{registrationId}": {
+      "schema": "AcademyRegistration",
+      "description": "AI Animation course registrations"
+    },
+    "registrations_photo/{registrationId}": {
+      "schema": "AcademyRegistration",
+      "description": "AI Photo Editing course registrations"
+    },
+    "registrations_vibe-coding/{registrationId}": {
+      "schema": "AcademyRegistration",
+      "description": "AI Vibe Coding course registrations"
+    },
+    "chat_messages_animation/{messageId}": {
+      "schema": "AcademyChatMessage",
+      "description": "AI Animation group chat room messages"
+    },
+    "chat_messages_photo/{messageId}": {
+      "schema": "AcademyChatMessage",
+      "description": "AI Photo Editing group chat room messages"
+    },
+    "chat_messages_vibe-coding/{messageId}": {
+      "schema": "AcademyChatMessage",
+      "description": "AI Vibe Coding group chat room messages"
+    }
+  }
+}
